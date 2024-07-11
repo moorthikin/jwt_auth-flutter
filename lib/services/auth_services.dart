@@ -25,6 +25,9 @@ class Authservice {
       if (response.statusCode == 200) {
         final result = jsonDecode(response.body);
         final UserModel user = UserModel.fromJson(result);
+        SharedPreferences _pref = await SharedPreferences.getInstance();
+
+        _pref.setString('token', user.token.toString());
 
         return user;
       } else {
